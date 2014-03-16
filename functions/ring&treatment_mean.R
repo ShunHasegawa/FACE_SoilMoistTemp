@@ -9,10 +9,13 @@ typ <- c("Theta5", "Theta30", "ThetaHL", "Theta75", "VWC", "EC", "TDRTemp",
 
 type.mean <- cbind(allsoil[c("Date", "ring", "co2")],sapply(typ, colmean))
 
-ring.mean <- ddply(type.mean, .(Date, ring, co2), 
-                   function(x) apply(x[,-1:-3], 2, mean, na.rm = TRUE))
+ring.means <- ddply(type.mean, .(Date, ring, co2), 
+                   function(x) apply(x[ ,-1:-3], 2, mean, na.rm = TRUE))
 
-co2.mean <- ddply(ring.mean, .(Date, co2), 
+names(ring.means)[c(8, 10)] <- c("moist", "temp")
+ring.means<-ring.means[order(ring.means$Date),]
+
+co.means <- ddply(ring.means, .(Date, co2), 
                    function(x) apply(x[,-1:-3], 2, mean, na.rm = TRUE)) 
 
 save(co.means,file="output/co.means.Rdata")
