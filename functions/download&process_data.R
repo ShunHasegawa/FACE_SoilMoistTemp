@@ -36,6 +36,13 @@ processData <- function(dataset) {
 
 allsoil <- processData(allsoils)
 
+# there is a REALLY weird value in VWC_1_Avg
+#plot(allsoil$VWC_1_Avg)
+summary(allsoil)
+
+allsoil <- subset(allsoil,VWC_1_Avg < 1)
+
+
 save(allsoil, file="output/allsoil.RData")
 
 #Note: save as binary (which is quicker to process than csv)
