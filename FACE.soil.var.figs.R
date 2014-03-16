@@ -11,7 +11,7 @@ library(HIEv)
 
 #download & process soil data
 source("functions/download&process_data.R")
-  #load("output/allsoil.Rdata") #When you still want to run the following codes even though all files are up to date.
+ #load("output/allsoil.Rdata") #When you still want to run the following codes even though all files are up to date.
 
 #produce daily ring and treatment mean
 source("functions/ring&treatment_mean.R")
