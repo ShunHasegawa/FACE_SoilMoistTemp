@@ -14,6 +14,9 @@ ring.means <- ddply(type.mean, .(Date, ring, co2),
 
 names(ring.means)[c(8, 10)] <- c("moist", "temp")
 ring.means<-ring.means[order(ring.means$Date),]
+save(ring.means, file = "output/soil.var_ring.means.Rdata")
+write.csv(ring.means, file = "output/FACE.soil.var_ring.means.csv")
+?write.csv
 
 co.means <- ddply(ring.means, .(Date, co2), 
                    function(x) apply(x[,-1:-3], 2, mean, na.rm = TRUE)) 
