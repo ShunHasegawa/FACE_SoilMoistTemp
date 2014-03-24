@@ -8,5 +8,5 @@ pl <- p + geom_line(size = 1) +
   geom_vline(xintercept = as.numeric(as.Date("2012-09-18")), linetype = "dashed") +
   ggtitle("n = 8")
 
-ggsave(filename = "Figs/FACE.Soil.Moist.at.5cm.png", width = 16, height = 8, units= "in", plot = pl)
-ggsave(filename = "Figs/FACE.Soil.Moist.at.5cm.pdf", width = 16, height = 8, units= "in", plot = pl)
+ggsave(filename = "Figs/FACE.Soil.Moist.at.5cm.png", width = 8, height = 4, units= "in", plot = pl)
+ggsave(filename = "Figs/FACE.Soil.Moist.at.5cm.pdf", width = 8, height = 4, units= "in", plot = pl)
