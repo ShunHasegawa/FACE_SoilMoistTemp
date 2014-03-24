@@ -13,7 +13,7 @@ pl <- p + geom_line(size = 1) +
   labs(x = "Time", y = "Soil moisture (% of volumetrtic water content)") +
   facet_grid(variable ~. ) +
   geom_vline(xintercept = as.numeric(as.Date("2012-09-18")), linetype = "dashed") +
-  ggtitle("n = 8")
+  ggtitle("n = 2")
 
 ggsave(filename = "Figs/FACE.Soil.Moist.diff.layers.png", plot = pl)
 ggsave(filename = "Figs/FACE.Soil.Moist.diff.layers.pdf", plot = pl)
