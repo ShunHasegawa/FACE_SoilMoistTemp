@@ -33,8 +33,12 @@ source("functions/FACE.annual.soil.moisture_mean.pdf.R")
 #png
 source("functions/Fig_soil.moist.temp.ring.png.R")
 
-#soil moisture for each ring at different depths
-source("functions/fig_soil.moist.dif.depths.R")
+# soil moisture for each ring at different depths (n = 2)
+source("functions/Fig.soil.moist.dif.depths.R")
+
+#  soil moisture at 5 cm (n = 8)
+fig.soil.moist.5cm.N8.R
+
 
 #moisture at co2 treatments and rainfall
 #combine soil and rainfall data
