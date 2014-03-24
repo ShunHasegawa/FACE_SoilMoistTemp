@@ -32,7 +32,7 @@ source("functions/FACE.annual.soil.moisture_mean.pdf.R")
 source("functions/Fig.soil.moist.dif.depths.R")
 
 #  soil moisture at 5 cm (n = 8)
-fig.soil.moist.5cm.N8.R
+source("functions/fig.soil.moist.5cm.N8.R")
 
 
 #moisture at co2 treatments and rainfall
