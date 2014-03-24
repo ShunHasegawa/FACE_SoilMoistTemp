@@ -19,7 +19,7 @@ an.mean.se <- function(x){
 }
 
 an.mean.se <- apply(an.ring.mean[, 3:10], 1, an.mean.se)
-an.mean <- cbind(ring = c(1:6), rbind.fill(an.mean.se))
+an.mean <- cbind(ring = factor(c(1:6)), rbind.fill(an.mean.se))
 
 #save
 save(an.mean,file="output/an.mean.Rdata")
