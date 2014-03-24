@@ -31,14 +31,14 @@ rains <- rains[order(rains$DateTime),]
 # remove duplicates
 rains <- rains[!duplicated(rains),]
 
-#save
+# save
 save(rains,file="rains.Rdata")
 
 #write.csv(rainsn,"output/FACE_Rain(15min).csv")
 
 #daily accumulative rainfall
-DailyRain <- with(rains,aggregate(rains[c("Rain_mm_Tot","Through_Tot")],list(Date=Date),sum,na.rm=TRUE))
-#summary(DailyRain)
+DailyRain <- ddply(rains, .(Date), function(x) colSums(x[c("Rain_mm_Tot", "Through_Tot")], na.rm = TRUE))
+
 #save
 save(DailyRain,file="output/DailyRain.Rdata")
 
