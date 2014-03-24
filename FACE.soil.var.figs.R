@@ -28,11 +28,6 @@ source("functions/FACE_Rain.R")
 #annual soil moisture mean in each ring
 source("functions/FACE.annual.soil.moisture_mean.pdf.R")
 
-#moist & temp in each ring
-#file name with the used month & year
-#png
-source("functions/Fig_soil.moist.temp.ring.png.R")
-
 # soil moisture for each ring at different depths (n = 2)
 source("functions/Fig.soil.moist.dif.depths.R")
 
