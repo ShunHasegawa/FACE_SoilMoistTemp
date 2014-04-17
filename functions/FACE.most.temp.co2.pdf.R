@@ -17,7 +17,7 @@ axis(4,las=1,cex.axis=2)
 #time axis
 timer<-range(co.rain_means$Date)
 axis.Date(1,at=seq(timer[1],timer[2],by="month"),las=1,cex.axis=1.7,format="%b")
-axis.Date(1,at=c(timer[1],timer[1]+months(4)),las=1,cex.axis=1.7,format="%y",line=2,tick=F)
+axis.Date(1,at=c(timer[1],timer[1]+months(7)),las=1,cex.axis=1.7,format="%y",line=2,tick=F)
 box(bty="o")  
 mtext(2,text="Soil moisture at 5 cm",line=5.5, cex=2)
 mtext(2,text="(% of volumetric water content)",line=4, cex=2)
