@@ -3,6 +3,17 @@ rm(list=ls(all=TRUE))
 #source("functions/hivs.R")
 
 #library
+library(devtools)
+library(HIEv)
+library(plyr)
+library(reshape)
+library(ggplot2)
+library(gmodels)
+library(car)
+library(lubridate)
+
+
+
 source("functions/list_library.R")
 library(devtools)
 library(HIEv)
