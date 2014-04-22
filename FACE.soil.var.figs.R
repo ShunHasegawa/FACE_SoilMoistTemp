@@ -2,7 +2,6 @@ rm(list=ls(all=TRUE))
 #install the devtools package, which is required to install the HIEv package if necessary
 #source("functions/hivs.R")
 
-# library
 library(devtools)
 library(HIEv)
 library(plyr)
@@ -13,18 +12,20 @@ library(gmodels)
 library(car)
 library(lubridate)
 
+source("R/functions.R")
+
 # download & process soil data
-source("functions/download&process_data.R")
+source("R/download&process_data.R")
  #load("output/allsoil.Rdata") #When you still want to run the following codes even though all files are up to date.
 
 #produce daily ring and treatment mean
-source("functions/ring&treatment_mean.R")
+source("R/ring&treatment_mean.R")
 
 #produce annual moisture mean
-source("functions/AnnualRingMoist_mean.R")
+source("R/AnnualRingMoist_mean.R")
 
 #download & process Rain data
-source("functions/FACE_Rain.R")
+source("R/FACE_Rain.R")
   #load("output/allrain.Rdata")
 
 #figs
@@ -44,8 +45,8 @@ source("functions/fig.soil.moist.5cm.N8.R")
 co.rain_means <- merge(co.means,allrain,by="Date",all=TRUE)
 
   #pdf
-    source("functions/FACE.most.temp.co2.pdf.R")
+    source("functions/FACE.moist.temp.co2.pdf.R")
     
   #png
-    source("functions/FACE.most.temp.co2.png.R")
+    source("functions/FACE.moist.temp.co2.png.R")
   

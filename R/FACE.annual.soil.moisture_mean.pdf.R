@@ -1,5 +1,5 @@
 #windows(7,7,rescale="fixed")
-pdf("Figs/FACE.annual.soil.moisture_mean.pdf",
+pdf("output//Figs/FACE.annual.soil.moisture_mean.pdf",
     height=7,width=7)
 par(mar=c(3,3,3,0.5), oma=c(0,0,0,0))
 xv<-barplot(an.mean$Mean,col=as.numeric(levels(an.mean$ring)),

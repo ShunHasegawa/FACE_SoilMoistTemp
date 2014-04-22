@@ -15,5 +15,5 @@ pl <- p + geom_line(size = 1) +
   geom_vline(xintercept = as.numeric(as.Date("2012-09-18")), linetype = "longdash")
   
 
-ggsave(filename = "Figs/FACE.Soil.Moist.diff.layers.png", plot = pl, width = 8, height = 9)
-ggsave(filename = "Figs/FACE.Soil.Moist.diff.layers.pdf", plot = pl, width = 8, height = 9)
+ggsave(filename = "output/Figs/FACE.Soil.Moist.diff.layers.png", plot = pl, width = 8, height = 9)
+ggsave(filename = "output/Figs/FACE.Soil.Moist.diff.layers.pdf", plot = pl, width = 8, height = 9)

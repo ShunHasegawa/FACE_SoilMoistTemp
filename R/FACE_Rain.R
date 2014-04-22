@@ -20,7 +20,8 @@ setToken("wSoiD4s3UDMzxwdNhzmG ")
 ##file.exists: if files on HIEv have been downloaded
 
 #download, process and combine
-rains <- downloadTOA5("FACELawn_FACE_Rain",cachefile="hievdata/FACE_Rain_tmp.RData",topath="hievdata/row_data")
+rains <- downloadTOA5("FACELawn_FACE_Rain", cachefile = "Data/hievdata/FACE_Rain_tmp.RData", 
+                      topath = "Data/hievdata/row_data")
 
 
 #summary(rains)
@@ -32,7 +33,7 @@ rains <- rains[order(rains$DateTime),]
 rains <- rains[!duplicated(rains),]
 
 # save
-save(rains,file="rains.Rdata")
+save(rains,file="output//Data/rains.RData")
 
 #write.csv(rainsn,"output/FACE_Rain(15min).csv")
 
@@ -40,14 +41,14 @@ save(rains,file="rains.Rdata")
 DailyRain <- ddply(rains, .(Date), function(x) colSums(x[c("Rain_mm_Tot", "Through_Tot")], na.rm = TRUE))
 
 #save
-save(DailyRain,file="output/DailyRain.Rdata")
+save(DailyRain,file="output/Data/DailyRain.RData")
 
 #write.csv(rain.d,"output/FACE_Rain(daily).csv")
 #plot(Rain_mm_Tot~Date,type="h",data=DailyRain)
 
 #combine with previous datasets
 #call it
-load("output/Rainbefore.Rdata")
+load("output/Data/Rainbefore.Rdata")
 #summary(Rainbefore)
 
 #check if rainfall data match between HIEv and Vinol's file
@@ -75,4 +76,4 @@ before <- subset(Rainbefore,Date>="2012-09-20"&Date<"2013-06-04")
 
 allrain <- rbind.fill(before,DailyRain) #the number of columes is different so use rbind.fill rather than rbind
 
-save(allrain,file="output/allrain.Rdata")
+save(allrain,file="output/Data/allrain.RData")
