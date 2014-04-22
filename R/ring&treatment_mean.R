@@ -1,9 +1,3 @@
-# Daily Ring, Treatment mean
-colmean <- function(variable){
-  a <- allsoil[, grep(variable, names(allsoil))]
-  rowMeans(a, na.rm = TRUE)
-}
-
 typ <- c("Theta5", "Theta30", "ThetaHL", "Theta75", "VWC", "EC", "TDRTemp", 
           "T5", "T10", "T20", "T30", "T50", "T100")
 
@@ -16,7 +10,7 @@ names(ring.means)[c(8, 10)] <- c("moist", "temp")
 
 ring.means <- ring.means[order(ring.means$Date),]
 
-save(ring.means, file = "output/soil.var_ring.means.Rdata")
+save(ring.means, file = "output/soil.var_ring.means.RData")
 
 # write.csv(ring.means, file = "output/FACE.soil.var_ring.means.csv", row.names = FALSE)
 
