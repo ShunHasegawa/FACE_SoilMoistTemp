@@ -12,3 +12,11 @@ processData <- function(dataset) {
   dataset$Date <- as.Date(dataset$DateTime)
   return(dataset)
 } 
+
+##############################
+# Daily Ring, Treatment mean #
+##############################
+colmean <- function(variable){
+  a <- allsoil[, grep(variable, names(allsoil))]
+  rowMeans(a, na.rm = TRUE)
+}
