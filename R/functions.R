@@ -20,3 +20,12 @@ colmean <- function(variable){
   a <- allsoil[, grep(variable, names(allsoil))]
   rowMeans(a, na.rm = TRUE)
 }
+
+#######################################
+# function which produces mean and SE #
+#######################################
+an.mean.se <- function(x){
+  data.frame(Mean = mean(x, na.rm = TRUE), 
+             SE = ci(x, na.rm = TRUE)[4],
+             N = sum(!is.na(x)))
+}
