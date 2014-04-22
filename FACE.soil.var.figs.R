@@ -31,13 +31,13 @@ source("R/FACE_Rain.R")
 #figs
 
 #annual soil moisture mean in each ring
-source("functions/FACE.annual.soil.moisture_mean.pdf.R")
+source("R/FACE.annual.soil.moisture_mean.pdf.R")
 
 # soil moisture for each ring at different depths (n = 2)
-source("functions/Fig.soil.moist.dif.depths.R")
+source("R/Fig.soil.moist.dif.depths.R")
 
 #  soil moisture at 5 cm (n = 8)
-source("functions/fig.soil.moist.5cm.N8.R")
+source("R/fig.soil.moist.5cm.N8.R")
 
 
 #moisture at co2 treatments and rainfall
@@ -45,8 +45,8 @@ source("functions/fig.soil.moist.5cm.N8.R")
 co.rain_means <- merge(co.means,allrain,by="Date",all=TRUE)
 
   #pdf
-    source("functions/FACE.moist.temp.co2.pdf.R")
+    source("R/FACE.moist.temp.co2.pdf.R")
     
   #png
-    source("functions/FACE.moist.temp.co2.png.R")
+    source("R/FACE.moist.temp.co2.png.R")
   
