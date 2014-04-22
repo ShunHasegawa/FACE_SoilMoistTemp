@@ -7,16 +7,10 @@ setToken("wSoiD4s3UDMzxwdNhzmG ")
 #download files from HIEv
 #Remko's new function
 #use chachefile function in download TOA5
-soils <- downloadTOA5("SoilVars",cachefile="hievdata/tmp.RData",
-                      topath="hievdata/row_data", maxnfiles = 100)
-?downloadTOA5
+allsoils <- downloadTOA5("SoilVars",cachefile="Data/hievdata/tmp.RData",
+                      topath="Data/hievdata/row_data", maxnfiles = 100)
+
 #old files are stored in c:/hievdata/tmp.RData
-
-#call presoil data
-load("output/presoilData.R")
-
-#cobine all files
-allsoils <- rbind.fill(presoilData,soils)
 
 #####
 #function which processes dataset (add ring #, co2 treatments)
