@@ -11,32 +11,13 @@ allsoils <- downloadTOA5("SoilVars",cachefile="Data/hievdata/tmp.RData",
                       topath="Data/hievdata/row_data", maxnfiles = 100)
 
 #old files are stored in c:/hievdata/tmp.RData
-
-#####
-#function which processes dataset (add ring #, co2 treatments)
-#####
-processData <- function(dataset) {
-  #remvoe duplicate
-  dataset <- dataset[!duplicated(dataset),]
-  #add ring
-  dataset$ring <- factor(substr(dataset$Source,7,7))
-  #add co2
-  dataset$co2 <- factor(ifelse(dataset$ring %in% c(1,4,5), "elev", "amb"))
-  #add date
-  dataset$Date <- as.Date(dataset$DateTime)
-  return(dataset)
-} 
-
-
 allsoil <- processData(allsoils)
 
 # there is a REALLY weird value in VWC_1_Avg
 #plot(allsoil$VWC_1_Avg)
 summary(allsoil)
-
 allsoil <- subset(allsoil,VWC_1_Avg < 1)
 
-
-save(allsoil, file="output/allsoil.RData")
+save(allsoil, file="output/Data/allsoil.RData")
 
 #Note: save as binary (which is quicker to process than csv)
