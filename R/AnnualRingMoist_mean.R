@@ -3,11 +3,6 @@
 # extract soil moisture data
 soil.mo <- allsoil[,grep("VWC|ring|Date$|co2",names(allsoil))]
 
-#annual ring mean
-an.colmeans <- function(x){
-  colMeans(x[, 1:8], na.rm = TRUE)
-}
-
 an.ring.mean <- ddply(soil.mo, .(ring, co2), 
                       function(x) colMeans(x[, 1:8]*100, na.rm = TRUE))
 
