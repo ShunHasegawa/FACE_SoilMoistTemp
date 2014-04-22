@@ -2,23 +2,18 @@ rm(list=ls(all=TRUE))
 #install the devtools package, which is required to install the HIEv package if necessary
 #source("functions/hivs.R")
 
-#library
-install.packages("plyr")
-status()
-
-
+# library
 library(devtools)
 library(HIEv)
 library(plyr)
 library(reshape)
+library(packrat)
 library(ggplot2)
 library(gmodels)
 library(car)
 library(lubridate)
-(.packages()) #list of packages attached
-#####
 
-#download & process soil data
+# download & process soil data
 source("functions/download&process_data.R")
  #load("output/allsoil.Rdata") #When you still want to run the following codes even though all files are up to date.
 
