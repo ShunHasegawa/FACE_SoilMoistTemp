@@ -3,6 +3,10 @@ rm(list=ls(all=TRUE))
 #source("functions/hivs.R")
 
 #library
+install.packages("plyr")
+status()
+
+
 library(devtools)
 library(HIEv)
 library(plyr)
@@ -11,12 +15,6 @@ library(ggplot2)
 library(gmodels)
 library(car)
 library(lubridate)
-
-
-
-source("functions/list_library.R")
-library(devtools)
-library(HIEv)
 (.packages()) #list of packages attached
 #####
 
