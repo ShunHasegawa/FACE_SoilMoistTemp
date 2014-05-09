@@ -29,3 +29,23 @@ an.mean.se <- function(x){
              SE = ci(x, na.rm = TRUE)[4],
              N = sum(!is.na(x)))
 }
+
+#####################################################
+# Plot all soil variables and store in one pdf file #
+#####################################################
+
+pltAllvar <- function(data, filetitle){
+  figVar <- dlply(data, .(ring, type), function(x){
+    # plto figures for all the variable
+    figtitle <- paste("Ring", unique(x$ring), unique(x$type), sep = "_")
+    p <- ggplot(x, aes(x = Date, y = value, col = variable))
+    p + geom_point() +
+      ggtitle(figtitle)
+  })
+  
+  # savse in a sigle pdf
+  pdf(file = filetitle, width = 6, height = 5, onefile=TRUE)
+  l_ply(figVar, print)
+  dev.off()
+}
+
