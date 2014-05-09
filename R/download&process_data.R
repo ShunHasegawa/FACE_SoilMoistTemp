@@ -13,9 +13,24 @@ allsoils <- downloadTOA5("SoilVars",cachefile="Data/hievdata/tmp.RData",
 #old files are stored in c:/hievdata/tmp.RData
 allsoil <- processData(allsoils)
 
+# # There are some weird values so remove
+# # Data is too husge to plot all so make daily summary
+# vars <- names(allsoil)[grep("Avg", names(allsoil))]
+# DaySoil <- ddply(allsoil, .(Date, ring), function(x) colMeans(x[, vars], na.rm = TRUE))
+# DaySoilMlt <- melt(DaySoil, id = c("Date", "ring"))
+# 
+# # add type column
+# a <- DaySoilMlt$variable
+# DaySoilMlt$type  <- gsub("_.*", "", a )
+# 
+# # plot
+# theme_set(theme_bw())
+# pltAllvar(data = DaySoilMlt, filetitle = "output//Figs//AllSoilVars.pdf")
+
 # there is a REALLY weird value in VWC_1_Avg
 #plot(allsoil$VWC_1_Avg)
-summary(allsoil)
+summary(allsoil$VWC_1_Avg)
+summary(allsoil$VWC_2_Avg)
 allsoil <- subset(allsoil,VWC_1_Avg < 1)
 
 save(allsoil, file="output/Data/allsoil.RData")
