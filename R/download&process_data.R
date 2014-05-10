@@ -33,6 +33,19 @@ summary(allsoil$VWC_1_Avg)
 summary(allsoil$VWC_2_Avg)
 allsoil <- subset(allsoil,VWC_1_Avg < 1)
 
+################################################
+# temporaly process, NOTE: need to check again #
+# I just do it quickly this time.              #
+################################################
+# most of the probes are not working properly 
+# in the 1-2nd weeks
+
+# remove all data till till August for the time being
+allsoil <- subset(allsoil, Date >= as.Date("2012-08-01"))
+
+# ring2_Theta30_2_Avg is not working at all..
+allsoil$Theta30_2_Avg[allsoil$ring == 2] <- NA
+
 save(allsoil, file="output/Data/allsoil.RData")
 
 #Note: save as binary (which is quicker to process than csv)
