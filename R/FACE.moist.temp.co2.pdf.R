@@ -25,7 +25,7 @@ box(bty="o")
 mtext(2,text="Soil moisture at 5 cm",line=5.5, cex=2)
 mtext(2,text="(% of volumetric water content)",line=4, cex=2)
 mtext(4,text=expression(Soil~temperature~at~5~cm~(degree~C)),line=4.5, cex=2)
-legend("topleft",
+legend("top",
        leg=c("Temperature at amb",
              expression(Temperature~at~eCO[2]),
              "Moisture at amb",
