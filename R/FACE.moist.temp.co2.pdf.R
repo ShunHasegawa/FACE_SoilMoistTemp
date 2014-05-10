@@ -22,9 +22,9 @@ timer<-range(co.rain_means$Date)
 axis.Date(1,at=seq(timer[1],timer[2],by="month"),las=1,cex.axis=1.7,format="%b")
 axis.Date(1,at=c(timer[1],timer[1]+months(7)),las=1,cex.axis=1.7,format="%y",line=2,tick=F)
 box(bty="o")  
-mtext(2,text="Soil moisture at 5 cm",line=5.5, cex=2)
+mtext(2,text="Soil moisture at 10 cm",line=5.5, cex=2)
 mtext(2,text="(% of volumetric water content)",line=4, cex=2)
-mtext(4,text=expression(Soil~temperature~at~5~cm~(degree~C)),line=4.5, cex=2)
+mtext(4,text=expression(Soil~temperature~at~10~cm~(degree~C)),line=4.5, cex=2)
 legend("top",
        leg=c("Temperature at amb",
              expression(Temperature~at~eCO[2]),
