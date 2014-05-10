@@ -8,6 +8,9 @@ points(moist[co2=="elev"]*100~Date[co2=="elev"],type="l",lwd=2,lty=2,co.rain_mea
 points(moist[co2=="amb"]*100~Date[co2=="amb"],type="l",lwd=2,co.rain_means)
 axis(2,las=1,cex.axis=2)
 
+# vertical line when co2 was switched on
+abline(v = as.numeric(as.Date("2012-09-18")), lty = 3, lwd = 2)
+
 #plot temp
 par(new=TRUE) #overlay the plot on the previouis one
 plot(temp~Date,type="n",ylim=c(0,27),axes=F,xlab="",ylab="",co.rain_means)
