@@ -11,6 +11,7 @@ library(ggplot2)
 library(gmodels)
 library(car)
 library(lubridate)
+library(dplyr)
 
 source("R/functions.R")
 

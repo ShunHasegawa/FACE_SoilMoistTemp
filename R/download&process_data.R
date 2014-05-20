@@ -2,7 +2,7 @@
 #source("functions/Process_presoil.R")
 
 #download up to date files from HIEv
-setToken("wSoiD4s3UDMzxwdNhzmG ")
+setToken("wSoiD4s3UDMzxwdNhzmG")
 
 #download files from HIEv
 #Remko's new function
@@ -49,3 +49,27 @@ allsoil$Theta30_2_Avg[allsoil$ring == 2] <- NA
 save(allsoil, file="output/Data/allsoil.RData")
 
 #Note: save as binary (which is quicker to process than csv)
+
+##########################################
+# Daily min, max and mean for each probe #
+##########################################
+names(allsoil)
+
+# not probe variables
+Notprbs <- c("DateTime", "RECORD", "Date", "Source", "ring", "co2")
+
+soilMlt <- melt(allsoil, id = Notprbs)
+
+soilRngSmry <- soilMlt %.% 
+  group_by(Date, ring, co2, variable) %.%
+  summarise(Mean = mean(value, na.rm = TRUE),
+            Min = min(value, na.rm = TRUE),
+            Max = max(value, na.rm = TRUE))
+
+# remove NA
+soilRngSmry <- soilRngSmry[complete.cases(soilRngSmry), ]
+
+# save
+save(soilRngSmry, file = "output/Data/FACE_SoilAllProb.RData")
+
+
