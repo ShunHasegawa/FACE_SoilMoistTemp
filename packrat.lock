@@ -3,6 +3,14 @@ PackratVersion: 0.1.0
 RVersion: 3.1.0
 Repos: http://cran.rstudio.com, http://www.stats.ox.ac.uk/pub/RWin
 
+Package: assertthat
+Source: CRAN
+Version: 0.1
+
+Package: BH
+Source: CRAN
+Version: 1.54.0-2
+
 Package: bitops
 Source: CRAN
 Version: 1.0-6
@@ -28,6 +36,11 @@ Version: 2.0-0
 Package: digest
 Source: CRAN
 Version: 0.6.4
+
+Package: dplyr
+Source: CRAN
+Version: 0.1.3
+Requires: assertthat, Rcpp, BH
 
 Package: evaluate
 Source: CRAN
