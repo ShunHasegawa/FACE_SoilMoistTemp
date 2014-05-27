@@ -72,4 +72,3 @@ soilRngSmry <- soilRngSmry[complete.cases(soilRngSmry), ]
 # save
 save(soilRngSmry, file = "output/Data/FACE_SoilAllProb.RData")
 
-

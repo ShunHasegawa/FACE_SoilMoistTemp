@@ -1,8 +1,6 @@
 wrmDay <- c(seq(as.Date("2012-09-18"), as.Date("2013-02-28"), by = "day"),
             seq(as.Date("2013-09-18"), as.Date("2014-02-28"), by = "day"))
 
-
-
 ############
 # Ringfall #
 ############
