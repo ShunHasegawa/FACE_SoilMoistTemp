@@ -12,6 +12,7 @@ library(gmodels)
 library(car)
 library(lubridate)
 library(dplyr)
+library(scales)
 
 source("R/functions.R")
 
