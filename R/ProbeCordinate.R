@@ -1,7 +1,18 @@
 cor <- read.csv("Data//ProbeCoordinate.csv")
 
+###########
+# Process #
+###########
+# remove mineralisaation
+cor <- subsetD(cor, Sample != "Mineralisation tube")
+cor$Sample <- factor(cor$Sample, labels = c("IEM", "Lysimeter", "soil", "TDR", "vegetation"))
+
+# plot cordinates
 corRct <- subsetD(cor, Sample %in% c("vegetation", "soil"))
 
+#######
+# Fig #
+#######
 # Data frame to draw a circle
 CclDF <- circleFun(diameter = 25)
 
@@ -17,3 +28,21 @@ pl <- p + geom_point(aes(shape = Sample, col = Sample), size = 1) +
   facet_wrap(~Ring)
 
 ggsavePP(filename = "output//Figs/FigsFACE_Cordinates", plot = pl, width = 8, height = 4)
+
+##########################################
+# pair instrument/plot with nearest TDR  #
+##########################################
+MinDis <- ddply(cor, .(Ring), RngMinDis)
+MinDis <- MinDis[order(MinDis$Sample), ]
+
+# pairwise with soil variable data
+load("output//Data//FACE_SoilAllProb.RData")
+
+TDRDF <- subsetD(soilRngSmry, grepl("VWC|TDR", variable))
+TDRDF$variable <- as.character(TDRDF$variable)
+# get TDR number
+TDRDF$tdr <- factor(str_sub(TDRDF$variable,-5,-5))
+
+# merge
+FACE_TDR_Probe <- merge(TDRDF, MinDis, by.x = c("ring", "tdr"), by.y = c("Ring","ClosestTDR"))
+save(FACE_TDR_Probe, file = "output/Data/FACE_TDR_Probe.RData")
