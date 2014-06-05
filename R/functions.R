@@ -82,3 +82,25 @@ circleFun <- function(center = c(0,0),diameter = 1, npoints = 100){
   yy <- center[2] + r * sin(tt)
   return(data.frame(x = xx, y = yy))
 }
+
+###########################################################
+# Calculated minimum distance between between IEM and TDR #
+###########################################################
+MinDistans <- function(iemDF, tdrDF){
+  d1 <- (iemDF$Northing - tdrDF$Northing)^2
+  d2 <- (iemDF$Easting - tdrDF$Easting)^2
+  d <- d1 + d2
+  # position of minimum distance
+  df <- data.frame(
+    ClosestTDR = tdrDF$Plot[which(d == min(d))],
+    dis = sqrt(min(d))
+  )
+  return(df)
+}
+
+# calculate minimum distans for each ring
+RngMinDis <- function(data){
+  iemDF <- subset(data, Sample == "Ion exchange resin")
+  tdrDF <- subset(data, Sample == "TDR")
+  ddply(iemDF, .(Plot), function(x) MinDistans(iemDF = x, tdrDF = tdrDF))
+}
