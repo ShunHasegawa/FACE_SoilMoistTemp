@@ -46,3 +46,20 @@ TDRDF$tdr <- factor(str_sub(TDRDF$variable,-5,-5))
 # merge
 FACE_TDR_Probe <- merge(TDRDF, MinDis, by.x = c("ring", "tdr"), by.y = c("Ring","ClosestTDR"))
 save(FACE_TDR_Probe, file = "output/Data/FACE_TDR_Probe.RData")
+
+# reoganise
+names(FACE_TDR_Probe)[grep("Plot", names(FACE_TDR_Probe))] <- "plot"
+names(FACE_TDR_Probe)[grep("variable", names(FACE_TDR_Probe))] <- "probe"
+FACE_TDR_Probe$type <- factor(ifelse(grepl("VWC",FACE_TDR_Probe$probe), "Moist", "Temp"))
+
+FACE_TDR_Probe_Mlt <- melt(FACE_TDR_Probe, 
+                           id = names(FACE_TDR_Probe)[which(!(names(FACE_TDR_Probe) %in% c("Mean", "Min", "Max")))])
+
+FACE_TDR_ProbeDF <- cast(FACE_TDR_Probe_Mlt, Date + ring + plot + Sample ~ type + variable)
+
+# remove moist min and max
+FACE_TDR_ProbeDF <- FACE_TDR_ProbeDF[, -grep("Moist_Min|Moist_Max", names(FACE_TDR_ProbeDF))]
+names(FACE_TDR_ProbeDF)[grep("Moist", names(FACE_TDR_ProbeDF))] <- "Moist"
+
+# save
+save(FACE_TDR_ProbeDF, file = "output/Data/FACE_TDR_ProbeDF.RData")
