@@ -65,7 +65,7 @@ pl <- p + geom_point(aes(shape = Sample, col = Sample), size = 1) +
   geom_path(aes(x = x, y = y), data = CclDF) +
   facet_wrap(~Ring)
 
-ggsavePP(filename = "output//Figs/FACE_Cordinates", plot = pl, width = 6, height = 4)
+ggsavePP(filename = "output//Figs/FACE_Cordinates", plot = pl, width = 7, height = 4)
 
 #####################
 # Soil variable map #
