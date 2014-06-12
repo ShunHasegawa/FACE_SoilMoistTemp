@@ -104,3 +104,16 @@ RngMinDis <- function(data){
   tdrDF <- subset(data, Sample == "TDR")
   ddply(ProbeDF, .(Plot, Sample), function(x) MinDistans(ProbeDF = x, tdrDF = tdrDF))
 }
+
+#############################################
+# Plot distribution of soil moisture & temp #
+#############################################
+PltSoilVarDistr <- function(vars){
+  data <- subset(TDR_CorVal, type == vars)
+  p <- ggplot(data, aes(x = Easting, y = Northing))
+  pl <- p + geom_point(aes(col = Mean), size = 3) +
+    scale_colour_gradient("Mean", low = "blue", high = "red") +
+    geom_path(aes(x = x, y = y), data = CclDF) +
+    facet_wrap(~ Ring) +
+    ggtitle(vars)
+}

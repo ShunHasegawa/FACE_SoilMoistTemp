@@ -7,28 +7,6 @@ cor <- read.csv("Data//ProbeCoordinate.csv")
 cor <- subsetD(cor, Sample != "Mineralisation tube")
 cor$Sample <- factor(cor$Sample, labels = c("IEM", "Lysimeter", "soil", "TDR", "vegetation"))
 
-# plot cordinates
-corRct <- subsetD(cor, Sample %in% c("vegetation", "soil"))
-
-#######
-# Fig #
-#######
-# Data frame to draw a circle
-CclDF <- circleFun(diameter = 25)
-
-theme_set(theme_bw())
-p <- ggplot(cor, aes(x = Easting, y = Northing))
-pl <- p + geom_point(aes(shape = Sample, col = Sample), size = 1) +
-  geom_rect(aes(xmin = Easting - 1, xmax = Easting + 1, 
-                ymin = Northing - 1, ymax = Northing + 1, 
-                fill = Sample),
-            alpha = 0.5,
-            data = corRct) +
-  geom_path(aes(x = x, y = y), data = CclDF) +
-  facet_wrap(~Ring)
-
-ggsavePP(filename = "output//Figs/FigsFACE_Cordinates", plot = pl, width = 8, height = 4)
-
 ##########################################
 # pair instrument/plot with nearest TDR  #
 ##########################################
@@ -63,3 +41,57 @@ names(FACE_TDR_ProbeDF)[grep("Moist", names(FACE_TDR_ProbeDF))] <- "Moist"
 
 # save
 save(FACE_TDR_ProbeDF, file = "output/Data/FACE_TDR_ProbeDF.RData")
+
+#######
+# Fig #
+#######
+
+###################
+# plot cordinates #
+###################
+
+corRct <- subsetD(cor, Sample %in% c("vegetation", "soil"))
+# Data frame to draw a circle
+CclDF <- circleFun(diameter = 25)
+
+theme_set(theme_bw())
+p <- ggplot(cor, aes(x = Easting, y = Northing))
+pl <- p + geom_point(aes(shape = Sample, col = Sample), size = 1) +
+  geom_rect(aes(xmin = Easting - 1, xmax = Easting + 1, 
+                ymin = Northing - 1, ymax = Northing + 1, 
+                fill = Sample),
+            alpha = 0.5,
+            data = corRct) +
+  geom_path(aes(x = x, y = y), data = CclDF) +
+  facet_wrap(~Ring)
+
+ggsavePP(filename = "output//Figs/FACE_Cordinates", plot = pl, width = 6, height = 4)
+
+#####################
+# Soil variable map #
+#####################
+
+# merge TDR values and cordinates
+# tdr coordinate
+CorTdr<- subsetD(cor, Sample == "TDR")
+
+
+# annual mean of soil variables
+TdrAnn <- ddply(TDRDF, .(ring, tdr, co2, variable), 
+                function(x) colMeans(x[, c("Mean", "Min", "Max")], na.rm = TRUE))
+
+
+TDR_CorVal <- merge(CorTdr, TdrAnn, by.y = c("ring", "tdr"), 
+                 by.x = c("Ring", "Plot"))
+
+TDR_CorVal$type <- factor(ifelse(grepl("VWC",TDR_CorVal$variable),
+                                 "Moist", "Temp"))
+
+# Moisture
+pl <- PltSoilVarDistr(vars = "Moist")
+ggsavePP(filename = "output//Figs/FACE_SoilMoistDistr", plot = pl, width = 6, height = 4)
+
+# Temperature
+pl <- PltSoilVarDistr(vars = "Temp")
+ggsavePP(filename = "output//Figs/FACE_SoilTempeDistr", plot = pl, width = 6, height = 4)
+
