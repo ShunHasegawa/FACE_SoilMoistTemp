@@ -1,0 +1,13 @@
+.Rproj.user
+*.Rproj
+.Rhistory
+*.RData
+*.csv
+Figs/
+Data.Rproj
+output/
+hievdata/
+RainfallChart.xlsx
+FACE.soil.tc.tn.txt
+OldScript
+library
