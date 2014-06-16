@@ -76,8 +76,8 @@ Version: 3.4.0
 
 Package: HIEv
 Source: unknown
-Version: 0.4-4
-Requires: lubridate, rjson, RCurl, plyr, stringr, maptools, RODBC
+Version: 0.5-4
+Requires: lubridate, rjson, RCurl, dplyr, stringr, maptools, RODBC
 
 Package: httr
 Source: CRAN
