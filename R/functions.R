@@ -92,7 +92,9 @@ MinDistans <- function(ProbeDF, tdrDF){
   d <- d1 + d2
   # position of minimum distance
   df <- data.frame(
-    ClosestTDR = tdrDF$Plot[which(d == min(d))],
+    ClosestTDR = tdrDF$Plot[which(d == min(d))][1],
+    # when there are more than two closest TDRs, just use
+    # the first one
     dis = sqrt(min(d))
   )
   return(df)
