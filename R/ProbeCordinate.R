@@ -64,7 +64,6 @@ CclDF <- circleFunD(diameter = 25)
 
 theme_set(theme_bw())
 p <- ggplot(PrbtDF, aes(x = Easting, y = Northing))
-
 pl <- p + 
   geom_rect(aes(xmin = Easting - 1, xmax = Easting + 1, 
                 ymin = Northing - 1, ymax = Northing + 1, 
@@ -77,7 +76,6 @@ pl <- p +
   facet_wrap(~Ring)
 
 ggsavePP(filename = "output//Figs/FACE_Cordinates", plot = pl, width = 7, height = 4)
-
 
 
 #####################
