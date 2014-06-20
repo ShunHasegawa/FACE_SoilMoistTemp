@@ -26,14 +26,62 @@ names(PairTDR_MoistTemp)[grep("Moist", names(PairTDR_MoistTemp))] <- "Moist"
 #######
 # Fig #
 #######
-p <- ggplot(PairTDR_MoistTemp, 
-            aes(x = Temp_Max, y = Moist, col = ring))
-p <- ggplot(PairTDR_MoistTemp, 
-            aes(x = Temp_Mean, y = Moist, col = ring))
-p <- ggplot(PairTDR_MoistTemp, 
-            aes(x = Temp_Min, y = Moist, col = ring))
 
-p + geom_point(alpha = .3) + facet_wrap(~ring) +
-  stat_ellipse(geom = "polygon", alpha = 0.1, level=0.75, 
-               aes_string(col = "ring", fill = "ring"))
+PltMoistTemp <- function(data, x, size = 1){
+  p <- ggplot(data, aes_string(x = x, y = "log(Moist)", col = "ring"))
+  p2 <- p + geom_point(size = size, alpha = .3) +
+    guides(color = guide_legend(override.aes = list(size = 2)))
+  p2
+}
 
+PltMoistTemp(data = PairTDR_MoistTemp, "Temp_Mean" , size = .5) +
+  facet_wrap(~ring)
+box_top <- ggplot(PairTDR_MoistTemp, aes(y = "Temp_Moist")) + 
+  boxplot() + coord_flip()
+
+install.packages("boxplotdbl")
+library(boxplotdbl)
+
+dev.off()
+
+par(mfrow = c(2,3))
+d_ply(PairTDR_MoistTemp, .(ring), function(x)
+  with(x, boxplotdou(cbind(ring, Temp_Mean), cbind(ring, Moist), 
+                     xlim = c(5, 30), ylim = c(0, 0.5)))
+  )
+
+d_ply(PairTDR_MoistTemp, .(ring), function(x)
+  with(x, boxplotdou(cbind(ring, Temp_Mean), cbind(ring, log(Moist)), 
+                     xlim = c(5, 30)))
+  )
+
+
+
+data(iris)
+head(iris)
+iris[c(5,1)]
+
+?boxplotdou
+
+
+FigLst <- dlply(PairTDR_MoistTemp, .(ring), 
+                function(x) scatterplot(Moist ~ Temp_Max, data = x, main = unique(x$ring)))
+?scatterplot
+par(mfrow = c(2,3))
+FigLst[[3]]
+
+
+temps <- names(PairTDR_MoistTemp)[grep("Temp", names(PairTDR_MoistTemp))]
+
+# for each ring
+l_ply(temps, function(x) 
+  ggsavePP(filename = paste("output//Figs/FACE_Ring_Moist_", x, sep = ""),
+           plot = PltMoistTemp(data = PairTDR_MoistTemp, x , size = .5) + 
+             facet_wrap(~ring), 
+           width = 6, height = 4))
+
+# single fig
+l_ply(temps, function(x) 
+  ggsavePP(filename = paste("output//Figs/FACE_Moist_", x, sep = ""),
+           plot = PltMoistTemp(data = PairTDR_MoistTemp, x , size = .5), 
+           width = 6, height = 4))
