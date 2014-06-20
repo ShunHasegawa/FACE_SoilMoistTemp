@@ -13,6 +13,7 @@ library(car)
 library(lubridate)
 library(dplyr)
 library(scales)
+library(proto)
 
 source("R/functions.R")
 
