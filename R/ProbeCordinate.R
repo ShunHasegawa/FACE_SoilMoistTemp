@@ -5,7 +5,10 @@ cor <- read.csv("Data//ProbeCoordinate.csv")
 ###########
 # remove mineralisaation
 cor <- subsetD(cor, Sample != "Mineralisation tube")
-cor$Sample <- factor(cor$Sample, labels = c("IEM", "Lysimeter", "soil", "TDR", "vegetation"))
+cor$Sample <- factor(cor$Sample, 
+                     labels = c("IEM", "Lysimeter", 
+                                "permanent","soil", "TDR", 
+                                "vegetation"))
 
 ##########################################
 # pair instrument/plot with nearest TDR  #
@@ -50,22 +53,32 @@ save(FACE_TDR_ProbeDF, file = "output/Data/FACE_TDR_ProbeDF.RData")
 # plot cordinates #
 ###################
 
-corRct <- subsetD(cor, Sample %in% c("vegetation", "soil"))
+# Data frame for "plot"
+PltDF <- subset(cor, Sample %in% c("vegetation", "soil", "permanent"))
+
+# Data frame for probe
+PrbtDF <- subsetD(cor, !Sample %in% c("vegetation", "soil", "permanent"))
+
 # Data frame to draw a circle
-CclDF <- circleFun(diameter = 25)
+CclDF <- circleFunD(diameter = 25)
 
 theme_set(theme_bw())
-p <- ggplot(cor, aes(x = Easting, y = Northing))
-pl <- p + geom_point(aes(shape = Sample, col = Sample), size = 1) +
+p <- ggplot(PrbtDF, aes(x = Easting, y = Northing))
+
+pl <- p + 
   geom_rect(aes(xmin = Easting - 1, xmax = Easting + 1, 
                 ymin = Northing - 1, ymax = Northing + 1, 
-                fill = Sample),
-            alpha = 0.5,
-            data = corRct) +
+                fill = Sample),alpha = 0.5,data = PltDF) +
+  scale_fill_manual("Plot", values = c("orange", "brown", "green")) +
+  geom_point(aes(shape = Sample, col = Sample), size = 1) +
+  scale_color_manual("Instrument", values = c("red","blue", "cyan")) +
+  scale_shape_manual("Instrument", values = c(16, 17, 3)) +
   geom_path(aes(x = x, y = y), data = CclDF) +
   facet_wrap(~Ring)
 
 ggsavePP(filename = "output//Figs/FACE_Cordinates", plot = pl, width = 7, height = 4)
+
+
 
 #####################
 # Soil variable map #
