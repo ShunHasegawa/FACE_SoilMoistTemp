@@ -34,43 +34,6 @@ PltMoistTemp <- function(data, x, size = 1){
   p2
 }
 
-PltMoistTemp(data = PairTDR_MoistTemp, "Temp_Mean" , size = .5) +
-  facet_wrap(~ring)
-box_top <- ggplot(PairTDR_MoistTemp, aes(y = "Temp_Moist")) + 
-  boxplot() + coord_flip()
-
-install.packages("boxplotdbl")
-library(boxplotdbl)
-
-dev.off()
-
-par(mfrow = c(2,3))
-d_ply(PairTDR_MoistTemp, .(ring), function(x)
-  with(x, boxplotdou(cbind(ring, Temp_Mean), cbind(ring, Moist), 
-                     xlim = c(5, 30), ylim = c(0, 0.5)))
-  )
-
-d_ply(PairTDR_MoistTemp, .(ring), function(x)
-  with(x, boxplotdou(cbind(ring, Temp_Mean), cbind(ring, log(Moist)), 
-                     xlim = c(5, 30)))
-  )
-
-
-
-data(iris)
-head(iris)
-iris[c(5,1)]
-
-?boxplotdou
-
-
-FigLst <- dlply(PairTDR_MoistTemp, .(ring), 
-                function(x) scatterplot(Moist ~ Temp_Max, data = x, main = unique(x$ring)))
-?scatterplot
-par(mfrow = c(2,3))
-FigLst[[3]]
-
-
 temps <- names(PairTDR_MoistTemp)[grep("Temp", names(PairTDR_MoistTemp))]
 
 # for each ring
