@@ -26,6 +26,8 @@ names(PairTDR_MoistTemp)[grep("Moist", names(PairTDR_MoistTemp))] <- "Moist"
 #######
 # Fig #
 #######
+theme_set(theme_bw())
+
 temps <- names(PairTDR_MoistTemp)[grep("Temp", names(PairTDR_MoistTemp))]
 
 # for each ring
