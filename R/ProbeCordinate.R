@@ -60,7 +60,7 @@ PltDF <- subset(cor, Sample %in% c("vegetation", "soil", "permanent"))
 PrbtDF <- subsetD(cor, !Sample %in% c("vegetation", "soil", "permanent"))
 
 # Data frame to draw a circle
-CclDF <- circleFunD(diameter = 25)
+CclDF <- circleFun(diameter = 25)
 
 theme_set(theme_bw())
 p <- ggplot(PrbtDF, aes(x = Easting, y = Northing))
