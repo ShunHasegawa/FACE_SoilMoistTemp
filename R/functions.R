@@ -157,3 +157,13 @@ StatEllipse <- proto(ggplot2:::Stat,
 stat_ellipse <- function(mapping=NULL, data=NULL, geom="path", position="identity", ...) {
   StatEllipse$new(mapping=mapping, data=data, geom=geom, position=position, ...)
 }
+
+###############################
+# Plot TDR Moist against Temp #
+###############################
+PltMoistTemp <- function(data, x, size = 1){
+  p <- ggplot(data, aes_string(x = x, y = "log(Moist)", col = "ring"))
+  p2 <- p + geom_point(size = size, alpha = .3) +
+    guides(color = guide_legend(override.aes = list(size = 2)))
+  p2
+}

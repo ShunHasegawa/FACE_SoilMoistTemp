@@ -26,14 +26,6 @@ names(PairTDR_MoistTemp)[grep("Moist", names(PairTDR_MoistTemp))] <- "Moist"
 #######
 # Fig #
 #######
-
-PltMoistTemp <- function(data, x, size = 1){
-  p <- ggplot(data, aes_string(x = x, y = "log(Moist)", col = "ring"))
-  p2 <- p + geom_point(size = size, alpha = .3) +
-    guides(color = guide_legend(override.aes = list(size = 2)))
-  p2
-}
-
 temps <- names(PairTDR_MoistTemp)[grep("Temp", names(PairTDR_MoistTemp))]
 
 # for each ring
