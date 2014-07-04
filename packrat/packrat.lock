@@ -1,7 +1,8 @@
-PackratFormat: 1.1
+PackratFormat: 1.3
 PackratVersion: 0.1.0
 RVersion: 3.1.0
-Repos: http://cran.rstudio.com, http://www.stats.ox.ac.uk/pub/RWin
+Repos: CRAN=http://cran.rstudio.com,
+    CRANextra=http://www.stats.ox.ac.uk/pub/RWin
 
 Package: assertthat
 Source: CRAN
