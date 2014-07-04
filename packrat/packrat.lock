@@ -1,5 +1,5 @@
 PackratFormat: 1.3
-PackratVersion: 0.1.0
+PackratVersion: 0.3.0
 RVersion: 3.1.0
 Repos: CRAN=http://cran.rstudio.com,
     CRANextra=http://www.stats.ox.ac.uk/pub/RWin
@@ -25,10 +25,15 @@ Package: colorspace
 Source: CRAN
 Version: 1.2-4
 
+Package: data.table
+Source: CRAN
+Version: 1.9.2
+Requires: reshape2
+
 Package: devtools
 Source: CRAN
 Version: 1.5
-Requires: httr, RCurl, memoise, whisker, evaluate, digest
+Requires: digest, evaluate, httr, memoise, RCurl, whisker
 
 Package: dichromat
 Source: CRAN
@@ -41,7 +46,7 @@ Version: 0.6.4
 Package: dplyr
 Source: CRAN
 Version: 0.2
-Requires: assertthat, Rcpp, magrittr, Lahman, hflights, BH
+Requires: assertthat, BH, hflights, Lahman, magrittr, Rcpp
 
 Package: evaluate
 Source: CRAN
@@ -60,12 +65,12 @@ Requires: gtools
 Package: ggplot2
 Source: CRAN
 Version: 0.9.3.1
-Requires: plyr, digest, gtable, reshape2, scales, proto, MASS
+Requires: digest, gtable, MASS, plyr, proto, reshape2, scales
 
 Package: gmodels
 Source: CRAN
 Version: 2.15.4.1
-Requires: MASS, gdata
+Requires: gdata, MASS
 
 Package: gtable
 Source: CRAN
@@ -79,15 +84,10 @@ Package: hflights
 Source: CRAN
 Version: 0.1
 
-Package: HIEv
-Source: unknown
-Version: 0.6
-Requires: lubridate, rjson, RCurl, dplyr, stringr, maptools, RODBC
-
 Package: httr
 Source: CRAN
 Version: 0.3
-Requires: RCurl, stringr, digest
+Requires: digest, RCurl, stringr
 
 Package: labeling
 Source: CRAN
@@ -104,7 +104,7 @@ Version: 0.20-29
 Package: lubridate
 Source: CRAN
 Version: 1.3.3
-Requires: plyr, stringr, memoise
+Requires: memoise, plyr, stringr
 
 Package: magrittr
 Source: CRAN
@@ -112,8 +112,8 @@ Version: 1.0.1
 
 Package: maptools
 Source: CRAN
-Version: 0.8-29
-Requires: sp, foreign, lattice
+Version: 0.8-30
+Requires: lattice, sp
 
 Package: MASS
 Source: CRAN
@@ -123,6 +123,10 @@ Package: memoise
 Source: CRAN
 Version: 0.1
 Requires: digest
+
+Package: microbenchmark
+Source: CRAN
+Version: 1.3-0
 
 Package: munsell
 Source: CRAN
@@ -135,11 +139,11 @@ Version: 7.3-8
 
 Package: packrat
 Source: github
-Version: 0.1.0
+Version: 0.3.0
 GithubRepo: packrat
 GithubUsername: rstudio
 GithubRef: master
-GithubSha1: 0e360b5c15d319b796a1d4fdc83a2c5ae7a67333
+GithubSha1: 2165ec14e9f2ecb9e94cbde9a00d76da578ea47c
 
 Package: plyr
 Source: CRAN
@@ -171,11 +175,11 @@ Requires: plyr
 Package: reshape2
 Source: CRAN
 Version: 1.2.2
-Requires: plyr, stringr, lattice
+Requires: lattice, plyr, stringr
 
 Package: rjson
 Source: CRAN
-Version: 0.2.13
+Version: 0.2.14
 
 Package: RODBC
 Source: CRAN
@@ -184,7 +188,7 @@ Version: 1.3-10
 Package: scales
 Source: CRAN
 Version: 0.2.3
-Requires: RColorBrewer, stringr, dichromat, munsell, plyr, labeling
+Requires: dichromat, labeling, munsell, plyr, RColorBrewer, stringr
 
 Package: sp
 Source: CRAN
