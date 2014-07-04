@@ -1,6 +1,3 @@
-##only 1st time: process the files that are not on HIEv
-#source("functions/Process_presoil.R")
-
 #download up to date files from HIEv
 setToken("wSoiD4s3UDMzxwdNhzmG")
 
