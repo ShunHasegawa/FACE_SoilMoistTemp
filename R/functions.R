@@ -4,10 +4,13 @@
 processData <- function(dataset) {
   #remvoe duplicate
   dataset <- dataset[!duplicated(dataset),]
-  #add ring
-  dataset$ring <- factor(substr(dataset$Source,7,7))
-  #add co2
-  dataset$co2 <- factor(ifelse(dataset$ring %in% c(1,4,5), "elev", "amb"))
+  
+  #add ring & co2 columns
+  dataset <- within(dataset,{
+    ring <- factor(substr(Source,7,7))
+    co2 <- factor(ifelse(ring %in% c(1,4,5), "elev", "amb"))
+  })
+  
   return(dataset)
 } 
 
