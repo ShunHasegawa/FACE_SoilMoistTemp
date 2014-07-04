@@ -1,7 +1,7 @@
 #######################################
 # download up to date files from HIEv #
 #######################################
-setToken("wSoiD4s3UDMzxwdNhzmG")
+setToken(tokenfile = "Data/token.txt")
 
 # download files from HIEv
 # use chachefile function in download TOA5
