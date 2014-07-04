@@ -3,6 +3,7 @@
 *.RData
 *.csv
 Figs/
+Data/
 Data.Rproj
 output/
 hievdata/
