@@ -62,34 +62,6 @@ soilRngSmry <- soilMlt %.%
             Min = min(value, na.rm = TRUE),
             Max = max(value, na.rm = TRUE))
 
-df <- data.frame(x = rnorm(10), y = 2*rnorm(10), z = rep(c("A","B"), 5))
-df %.%
-  group_by(z) %.%
-  summarise(M = mean(x))
-
-ddply(df, .(z), summarise, mean(x))
-
-
-
-gb <- group_by(df, z)
-summarise(gb, M = mean(y))
-
-
-soilRngSmry3 <- soilMlt %.% 
-  group_by(ring) %.%
-  summarize(Mean = mean(value, na.rm = TRUE),
-            Min = min(value, na.rm = TRUE),
-            Max = max(value, na.rm = TRUE))
-
-
-
-a <- group_by(soilMlt, Date, ring, co2, variable) 
-head(a)
-
-b <- summarise(a,
-               Mean = mean(value, na.rm = TRUE),
-               Min = min(value, na.rm = TRUE),
-               Max = max(value, na.rm = TRUE))
 # remove NA
 soilRngSmry <- soilRngSmry[complete.cases(soilRngSmry), ]
 
