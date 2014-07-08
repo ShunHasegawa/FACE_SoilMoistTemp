@@ -1,3 +1,5 @@
+# load("output/Data/soil.var_ring.means.RData")
+
 # subset moisture data from different layers (n = 2)
 moist.depths <- ring.means[ ,grep("Date$|ring|Theta", names(ring.means))]
 
