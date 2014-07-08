@@ -2,16 +2,16 @@ rm(list=ls(all=TRUE))
 #install the devtools package, which is required to install the HIEv package if necessary
 #source("functions/hivs.R")
 
+library(reshape)
 library(plyr)
+library(dplyr)
 library(devtools)
 library(HIEv)
-library(reshape)
 library(packrat)
 library(ggplot2)
 library(gmodels)
 library(car)
 library(lubridate)
-library(dplyr)
 library(scales)
 library(proto)
 
@@ -19,7 +19,9 @@ source("R/functions.R")
 
 # download & process soil data
 source("R/download&process_data.R")
- #load("output/allsoil.Rdata") #When you still want to run the following codes even though all files are up to date.
+ # load("output/allsoil.Rdata") 
+ # When you still want to run the following codes even though all files are up
+ # to date.
 
 #produce daily ring and treatment mean
 source("R/ring&treatment_mean.R")
