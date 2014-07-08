@@ -19,21 +19,34 @@ source("R/functions.R")
 
 # download & process soil data
 source("R/download&process_data.R")
- # load("output/allsoil.Rdata") 
- # When you still want to run the following codes even though all files are up
- # to date.
+# load("output/Data/allsoil.RData")
+  # When you still want to run the following codes even though all files are up
+  # to date.
 
-#produce daily ring and treatment mean
+# produce daily ring and treatment mean
 source("R/ring&treatment_mean.R")
 
-#produce annual moisture mean
+# produce annual moisture mean
 source("R/AnnualRingMoist_mean.R")
 
-#download & process Rain data
+# download & process Rain data
 source("R/FACE_Rain.R")
-  #load("output/allrain.Rdata")
 
-#figs
+########
+# Figs #
+########
+
+############
+## ggplot ##
+############
+source("R/Fig.R")
+FgMstTmpRn(startDate = as.Date("2012-7-1"), endDate = as.Date("2014-4-2"))
+# if you want the graph covering all period just type: FgMstTmpRn()
+
+##########
+## Base ##
+##########
+# Plot moist, rainfall, and temp on one graph
 
 #annual soil moisture mean in each ring
 source("R/FACE.annual.soil.moisture_mean.pdf.R")
@@ -43,7 +56,6 @@ source("R/Fig.soil.moist.dif.depths.R")
 
 #  soil moisture at 5 cm (n = 8)
 source("R/fig.soil.moist.5cm.N8.R")
-
 
 #moisture at co2 treatments and rainfall
 #combine soil and rainfall data
