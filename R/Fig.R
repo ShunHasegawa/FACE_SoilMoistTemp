@@ -18,8 +18,6 @@ FgMstTmpRn <- function(startDate = NULL, endDate = NULL){
   # Rainfall #
   ############
   # load("output/Data/allrain.RData")
-  summary(allrain)
-  
   allrain$variable <- "Precipitation~(mm)"
   
   ############
