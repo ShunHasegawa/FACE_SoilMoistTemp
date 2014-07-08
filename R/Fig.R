@@ -2,7 +2,7 @@ FgMstTmpRn <- function(startDate = NULL, endDate = NULL){
   #######################
   ### Plot all dates ####
   #######################
-  load("output//Data/FACE_SoilAllProb.RData")
+  # load("output//Data/FACE_SoilAllProb.RData")
   
   #############
   # temp mean #
@@ -17,7 +17,7 @@ FgMstTmpRn <- function(startDate = NULL, endDate = NULL){
   ############
   # Rainfall #
   ############
-  load("output/Data/allrain.RData")
+  # load("output/Data/allrain.RData")
   summary(allrain)
   
   allrain$variable <- "Precipitation~(mm)"
@@ -25,7 +25,7 @@ FgMstTmpRn <- function(startDate = NULL, endDate = NULL){
   ############
   # Moisture #
   ############
-  load("output/Data/co.means.RData")
+  # load("output/Data/co.means.RData")
   # change unit
   co.means$moist <- co.means$moist * 100
   co.means$variable <- "Soil~moisture*~('%')"
