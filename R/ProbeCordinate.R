@@ -34,8 +34,9 @@ FACE_TDR_Probe$type <- factor(ifelse(grepl("VWC",FACE_TDR_Probe$probe), "Moist",
 
 FACE_TDR_Probe_Mlt <- melt(FACE_TDR_Probe, 
                            id = names(FACE_TDR_Probe)[which(!(names(FACE_TDR_Probe) %in% c("Mean", "Min", "Max")))])
-
-FACE_TDR_ProbeDF <- cast(FACE_TDR_Probe_Mlt, Date + ring + plot + Sample ~ type + variable)
+FACE_TDR_ProbeDF <- dcast(FACE_TDR_Probe_Mlt, Date + ring + plot + Sample ~ type + variable)
+# use dcast to get data.frame as output. if you use cast instead, output will be
+# list and could be a potentail couse of troubles later
 
 # remove moist min and max
 FACE_TDR_ProbeDF <- FACE_TDR_ProbeDF[, -grep("Moist_Min|Moist_Max", names(FACE_TDR_ProbeDF))]

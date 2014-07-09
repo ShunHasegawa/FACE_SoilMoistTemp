@@ -2,7 +2,7 @@ rm(list=ls(all=TRUE))
 #install the devtools package, which is required to install the HIEv package if necessary
 #source("functions/hivs.R")
 
-library(reshape)
+library(reshape2)
 library(plyr)
 library(dplyr)
 library(devtools)

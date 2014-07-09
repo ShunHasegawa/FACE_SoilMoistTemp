@@ -3,7 +3,7 @@
 # subet TDR
 TDR <- subsetD(soilRngSmry, grepl("TDR|VWC", variable))
 
-# tdr number, type, change col name of variable to cast
+# tdr number, type, change col name of variable to dcast
 TDR <- within(TDR, {
   tdr <- factor(str_sub(variable,-5,-5))
   type <- factor(ifelse(grepl("VWC", variable), "Moist", "Temp"))
@@ -18,7 +18,7 @@ TDRmlt_RmMoist_MinMax <- subset(TDRmlt, !(type == "Moist" & variable %in% c("Min
 unique(TDRmlt_RmMoist_MinMax$variable:TDRmlt_RmMoist_MinMax$type)
 
 # pair moist and temp for each tdr
-PairTDR_MoistTemp <- cast(TDRmlt_RmMoist_MinMax,
+PairTDR_MoistTemp <- dcast(TDRmlt_RmMoist_MinMax,
                           Date + ring + co2 + tdr ~ type + variable)
 names(PairTDR_MoistTemp)[grep("Moist", names(PairTDR_MoistTemp))] <- "Moist"
 
@@ -47,7 +47,7 @@ l_ply(temps, function(x)
 
 ## Plot moisture against each plot
 RngMoistMean <- ddply(PairTDR_MoistTemp, .(Date, ring), summarise, value = mean(Moist, na.rm = TRUE)) 
-RngMoist <- cast(RngMoistMean, Date ~ ring)
+RngMoist <- dcast(RngMoistMean, Date ~ ring)
 names(RngMoist)[-1] <- paste("Ring_", names(RngMoist)[-1], sep = "")
 scatterplotMatrix(~ Ring_1 + Ring_2 + Ring_3 + Ring_4 + Ring_5 + Ring_6, 
                   data = RngMoist, 
