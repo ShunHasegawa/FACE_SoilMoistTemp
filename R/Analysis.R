@@ -43,3 +43,14 @@ source("R/FACE_Rain.R")
 # Figs #
 ########
 source("R/figs.R")
+
+##################
+# Moist vs. Temp #
+##################
+# Moisture & Temperature relationship from TDR data
+source("R/PairTDR_MoistTemp.R")
+
+############################################
+# Instrument coordinates and pair with TDR #
+############################################
+source("R/ProbeCordinate.R") 
