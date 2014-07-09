@@ -17,7 +17,7 @@ MinDis <- ddply(cor, .(Ring), RngMinDis)
 MinDis <- MinDis[order(MinDis$Sample), ]
 
 # pairwise with soil variable data
-load("output//Data//FACE_SoilAllProb.RData")
+# load("output//Data//FACE_SoilAllProb.RData")
 
 TDRDF <- subsetD(soilRngSmry, grepl("VWC|TDR", variable))
 TDRDF$variable <- as.character(TDRDF$variable)
