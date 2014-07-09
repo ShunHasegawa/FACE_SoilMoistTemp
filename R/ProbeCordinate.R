@@ -6,8 +6,7 @@ cor <- read.csv("Data//ProbeCoordinate.csv")
 # remove mineralisaation
 cor <- subsetD(cor, Sample != "Mineralisation tube")
 cor$Sample <- factor(cor$Sample, 
-                     labels = c("IEM", "Lysimeter", 
-                                "permanent","soil", "TDR", 
+                     labels = c("IEM", "Lysimeter", "permanent","soil", "TDR", 
                                 "vegetation"))
 
 ##########################################
@@ -49,9 +48,9 @@ save(FACE_TDR_ProbeDF, file = "output/Data/FACE_TDR_ProbeDF.RData")
 # Fig #
 #######
 
-###################
-# plot cordinates #
-###################
+####################
+# plot coordinates #
+####################
 
 # Data frame for "plot"
 PltDF <- subset(cor, Sample %in% c("vegetation", "soil", "permanent"))
@@ -82,10 +81,9 @@ ggsavePP(filename = "output//Figs/FACE_Cordinates", plot = pl, width = 7, height
 # Soil variable map #
 #####################
 
-# merge TDR values and cordinates
+## merge TDR values and cordinates
 # tdr coordinate
 CorTdr<- subsetD(cor, Sample == "TDR")
-
 
 # annual mean of soil variables
 TdrAnn <- ddply(TDRDF, .(ring, tdr, co2, variable), 
@@ -106,3 +104,13 @@ ggsavePP(filename = "output//Figs/FACE_SoilMoistDistr", plot = pl, width = 6, he
 pl <- PltSoilVarDistr(vars = "Temp")
 ggsavePP(filename = "output//Figs/FACE_SoilTempeDistr", plot = pl, width = 6, height = 4)
 
+#######################################
+# Plot moisture for each probe (plot) #
+#######################################
+p <- ggplot(FACE_TDR_ProbeDF, aes(x = Date, y = Moist, col = factor(plot)))
+pl <- p + geom_point() +
+  scale_x_date(breaks = date_breaks("2 month"),
+               labels = date_format("%b-%y")) +
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust = 1)) +
+  facet_grid(Sample ~ ring)
+pl
