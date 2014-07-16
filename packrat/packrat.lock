@@ -1,6 +1,6 @@
 PackratFormat: 1.3
 PackratVersion: 0.3.0
-RVersion: 3.1.0
+RVersion: 3.1.1
 Repos: CRAN=http://cran.rstudio.com,
     CRANextra=http://www.stats.ox.ac.uk/pub/RWin
 
@@ -102,6 +102,11 @@ Package: magrittr
 Source: CRAN
 Version: 1.0.1
 
+Package: maptools
+Source: CRAN
+Version: 0.8-30
+Requires: sp
+
 Package: MASS
 Source: CRAN
 Version: 7.3-31
@@ -159,10 +164,22 @@ Source: CRAN
 Version: 1.4
 Requires: plyr, Rcpp, stringr
 
+Package: rjson
+Source: CRAN
+Version: 0.2.14
+
+Package: RODBC
+Source: CRAN
+Version: 1.3-10
+
 Package: scales
 Source: CRAN
 Version: 0.2.3
 Requires: dichromat, labeling, munsell, plyr, RColorBrewer, stringr
+
+Package: sp
+Source: CRAN
+Version: 1.0-15
 
 Package: stringr
 Source: CRAN
