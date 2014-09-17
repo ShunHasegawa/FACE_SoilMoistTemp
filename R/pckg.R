@@ -1,7 +1,6 @@
 library(reshape2)
 library(plyr)
 library(dplyr)
-library(devtools)
 library(ggplot2)
 library(gmodels)
 library(car)
