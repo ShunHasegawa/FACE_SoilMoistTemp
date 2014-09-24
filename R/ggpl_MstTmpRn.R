@@ -1,3 +1,11 @@
+# load lysimeter data to plot the sampling date
+load("Data//FACE_lysimeter.Rdata")
+lysday <- data.frame(Date = unique(lys$date), 
+                     variable = "Soil~moisture*~('%')",
+                     Rain_mm_Tot = 20)
+
+
+
 FgMstTmpRn <- function(startDate = NULL, endDate = NULL){
   #######################
   ### Plot all dates ####
@@ -46,6 +54,7 @@ FgMstTmpRn <- function(startDate = NULL, endDate = NULL){
                  labels = date_format("%b-%y"),
                  limits = c(startDate, endDate)) +
     theme(axis.text.x  = element_text(angle=45, vjust= 1, hjust = 1)) +
-    geom_vline(xintercept = as.numeric(as.Date("2012-09-18")), linetype = "dashed")
-  ggsavePP(filename= "output//Figs/FACE_TempMoistRain", plot = p2, width = 6, height = 6)
+    geom_vline(xintercept = as.numeric(as.Date("2012-09-18")), linetype = "dashed")+
+    geom_point(aes(x = Date, y = Rain_mm_Tot), data = lysday)
+  ggsavePP(filename= "output//Figs/FACE_TempMoistRain_lysimeter", plot = p2, width = 6, height = 6)
 }
