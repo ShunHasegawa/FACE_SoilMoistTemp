@@ -2,9 +2,8 @@
 load("Data//FACE_lysimeter.Rdata")
 lysday <- data.frame(Date = unique(lys$date), 
                      variable = "Soil~moisture*~('%')",
-                     Rain_mm_Tot = 20)
-
-
+                     Rain_mm_Tot = 30,
+                     SampleDate = "Lysimeter")
 
 FgMstTmpRn <- function(startDate = NULL, endDate = NULL){
   #######################
@@ -55,6 +54,8 @@ FgMstTmpRn <- function(startDate = NULL, endDate = NULL){
                  limits = c(startDate, endDate)) +
     theme(axis.text.x  = element_text(angle=45, vjust= 1, hjust = 1)) +
     geom_vline(xintercept = as.numeric(as.Date("2012-09-18")), linetype = "dashed")+
-    geom_point(aes(x = Date, y = Rain_mm_Tot), data = lysday)
-  ggsavePP(filename= "output//Figs/FACE_TempMoistRain_lysimeter", plot = p2, width = 6, height = 6)
+    geom_point(aes(x = Date, y = Rain_mm_Tot, shape = SampleDate), fill = "black", 
+               data = lysday, alpha = .5) +
+    scale_shape_manual(values = 25)
+    ggsavePP(filename= "output//Figs/FACE_TempMoistRain_lysimeter", plot = p2, width = 6, height = 6)
 }
