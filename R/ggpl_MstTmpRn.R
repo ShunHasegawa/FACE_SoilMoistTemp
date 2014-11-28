@@ -18,7 +18,7 @@ FgMstTmpRn <- function(startDate = NULL, endDate = NULL){
   # Rainfall #
   ############
   # load("output/Data/allrain.RData")
-  allrain$variable <- "Precipitation~(mm)"
+  allrain$variable <- "atop(Precipitation, (mm))"
   
   ############
   # Moisture #
@@ -65,10 +65,10 @@ FgMstTmpRn <- function(startDate = NULL, endDate = NULL){
                  limits = c(startDate, endDate)) +
     theme(panel.grid.major = element_blank(),
           panel.grid.minor = element_blank(),
-          axis.text.x = element_text(angle=45, vjust= 1, hjust = 1, 
-                                     size = 13),
+          axis.text.x = element_text(angle=45, vjust= 1, hjust = 1, size = 13),
           legend.position = "non",
           axis.title.y = element_text(size = 15),
-          plot.title = element_text(size = 25, face = "bold"))
-  ggsavePP(filename= "output//Figs/GSBI_Poster/FACE_TempMoistRain", plot = p2, width = 6, height = 5)
+          plot.title = element_text(size = 25, face = "bold"),
+          strip.text.y = element_text(size =15))
+  ggsavePP(filename= "output//Figs/GSBI_Poster/FACE_TempMoistRain", plot = p2, width = 6, height = 6)
 }
