@@ -2,7 +2,7 @@
 ## ggplot ##
 ############
 source("R/ggpl_MstTmpRn.R")
-FgMstTmpRn(startDate = as.Date("2012-7-1"), endDate = as.Date("2014-4-2"))
+FgMstTmpRn(startDate = as.Date("2012-6-15"), endDate = as.Date("2014-4-2"))
 # if you want the graph covering all period just type: FgMstTmpRn()
 
 ##########
