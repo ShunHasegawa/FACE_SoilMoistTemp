@@ -10,22 +10,22 @@ source("R/functions.R")
 ################
 
 # download & process soil data
-source("R/download&process_data.R")
-# load("output/Data/allsoil.RData")
-# load("output/Data/FACE_SoilAllProb.RData")
+# source("R/download&process_data.R")
+load("output/Data/allsoil.RData")
+load("output/Data/FACE_SoilAllProb.RData")
 
 # produce daily ring and treatment mean
-source("R/ring&treatment_mean.R")
-# load("output/Data/soil.var_ring.means.RData")
-# load("output/Data/co.means.RData")
+# source("R/ring&treatment_mean.R")
+load("output/Data/soil.var_ring.means.RData")
+load("output/Data/co.means.RData")
 
 # produce annual moisture mean
-source("R/AnnualRingMoist_mean.R")
-# load("output/Data/an.mean.RData")
+# source("R/AnnualRingMoist_mean.R")
+load("output/Data/an.mean.RData")
 
 # download & process Rain data
-source("R/FACE_Rain.R")
-# load("output/Data/allrain.RData")
+# source("R/FACE_Rain.R")
+load("output/Data/allrain.RData")
 
 # download & process co2 data
 
