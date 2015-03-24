@@ -13,13 +13,13 @@ FgMstTmpRn <- function(startDate = NULL, endDate = NULL){
   DayTemp <- ddply(tempDF, .(Date), summarise, Mean = mean(Mean, na.rm = TRUE), 
                    Min = mean(Min, na.rm = TRUE), 
                    Max = mean(Max, na.rm = TRUE))
-  DayTemp$variable <- "Soil~temperature~(degree~C)"
+  DayTemp$variable <- "Soil~temperature~(degree*C)"
   
   # daily mean for each co2 treatments for fig for publicaiton
   co2Temp <- ddply(tempDF, .(Date, co2), summarise, Mean = mean(Mean, na.rm = TRUE),
                    Min = mean(Min, na.rm = TRUE), 
                    Max = mean(Max, na.rm = TRUE))
-  co2Temp$variable <- "Soil~temperature~(degree~C)"
+  co2Temp$variable <- "Soil~temperature~(degree*C)"
   
   ############
   # Rainfall #
@@ -60,13 +60,16 @@ FgMstTmpRn <- function(startDate = NULL, endDate = NULL){
   # Plot for publication #
   ########################
   # theme
-  science_theme <- theme(panel.grid.major = element_blank(),
+  science_theme <- theme(panel.border = element_rect(colour = "black"),
+                         panel.grid.major = element_blank(),
                          panel.grid.minor = element_blank(),
                          axis.text.x  = element_text(angle=45, vjust= 1, hjust = 1),
+                         axis.ticks.length = unit(-.2, "lines"),
+                         axis.ticks.margin = unit(.5, "lines"),
                          legend.position = c(.11, .93), 
                          legend.title = element_blank(),
                          legend.key = element_blank(),
-                         legend.key.width = unit(2, "lines"))
+                         legend.key.width = unit(2.5, "lines"))
   
   p3 <- p + 
     geom_line(aes(x = Date, y = Mean, linetype = co2, col = co2), 
@@ -80,11 +83,12 @@ FgMstTmpRn <- function(startDate = NULL, endDate = NULL){
     geom_bar(aes(x = Date, y = Rain_mm_Tot), stat = "identity", data = allrain) +
     facet_grid(variable~. , scale = "free", labeller = label_parsed) +
     labs(x = NULL, y = NULL) +
-    scale_x_date(breaks= date_breaks("2 month"), 
+    scale_x_date(breaks= date_breaks("3 month"), 
                  labels = date_format("%b-%y"),
                  limits = c(startDate, endDate)) +
     science_theme +
     geom_vline(xintercept = as.numeric(as.Date("2012-09-18")), linetype = "dashed")
-  ggsavePP(filename= "output//Figs/FACE_manuscript/FACE_TempMoistRain", plot = p3, width = 6, height = 6)
+  ggsavePP(filename= "output//Figs/FACE_manuscript/FACE_TempMoistRain", plot = p3, 
+           width = 6.65, height = 6.65)
 }
 
