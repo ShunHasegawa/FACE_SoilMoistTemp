@@ -11,7 +11,7 @@ setToken(tokenfile = "Data/token.txt")
 # download files from HIEv
 # use chachefile function in downloadTOA5
 allsoils <- downloadTOA5("SoilVars",cachefile="Data/hievdata/tmp.RData",
-                      topath="Data/hievdata/row_data", maxnfiles = 100)
+                      topath="Data/hievdata/row_data", maxnfiles = 999)
 # previous files are stored in hievdata/tmp.RData
 
 # remove duplicates and add ring and co2 columns
