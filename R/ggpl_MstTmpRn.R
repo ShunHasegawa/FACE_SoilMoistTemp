@@ -1,4 +1,4 @@
-FgMstTmpRn <- function(startDate = NULL, endDate = NULL){
+FgMstTmpRn <- function(startDate = NULL, endDate = NULL, savefile = TRUE){
   #######################
   ### Plot all dates ####
   #######################
@@ -69,7 +69,7 @@ FgMstTmpRn <- function(startDate = NULL, endDate = NULL){
                          legend.position = c(.11, .93), 
                          legend.title = element_blank(),
                          legend.key = element_blank(),
-                         legend.key.width = unit(2.5, "lines"))
+                         legend.key.width = unit(1.8, "lines"))
   
   p3 <- p + 
     geom_line(aes(x = Date, y = Mean, linetype = co2, col = co2), 
@@ -88,7 +88,9 @@ FgMstTmpRn <- function(startDate = NULL, endDate = NULL){
                  limits = c(startDate, endDate)) +
     science_theme +
     geom_vline(xintercept = as.numeric(as.Date("2012-09-18")), linetype = "dashed")
-  ggsavePP(filename= "output//Figs/FACE_manuscript/FACE_TempMoistRain", plot = p3, 
-           width = 6.65, height = 6.65)
+  if(savefile){
+    ggsavePP(filename= "output//Figs/FACE_manuscript/FACE_TempMoistRain", plot = p3, 
+             width = 6.65, height = 6.65)
+  } else return(p3)
 }
 

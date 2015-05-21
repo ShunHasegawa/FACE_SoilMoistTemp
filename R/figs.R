@@ -5,6 +5,23 @@ source("R/ggpl_MstTmpRn.R")
 FgMstTmpRn(startDate = as.Date("2012-6-15"), endDate = as.Date("2014-3-29"))
 # if you want the graph covering all period just type: FgMstTmpRn()
 
+# Add figure caption
+p <- FgMstTmpRn(startDate = as.Date("2012-6-15"), endDate = as.Date("2014-3-29"), save = FALSE)
+
+string1 <- expression(atop(
+  paste(bold("Figure S1."),  " Soil moisture and temperature (5-25 cm), and precipitation during the study period."), 
+  paste("The vertical dotted line indicates when ", CO[2], " treatments were switched on (", 18^'th'~September~2012, ")."))
+  )
+
+text1 <- textGrob(string1, just = c("left", "centre"), 
+                  hjust = -.05, x = 0, y = unit(1.8, "line"),
+                  gp = gpar(fontsize = 10))
+
+p2 <- arrangeGrob(p, text1, ncol = 1, nrow = 2, 
+                  heights = unit(c(7, .5), "inches"))
+ggsavePP(filename = "output//Figs/FACE_manuscript/FACE_TempMoistRain_caption", 
+         plot = p2, width = 6.65, height = 7.7)
+
 ##########
 ## Base ##
 ##########
