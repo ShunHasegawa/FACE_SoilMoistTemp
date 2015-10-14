@@ -41,3 +41,46 @@ source("R/fig.soil.moist.5cm.N8.R")
 co.rain_means <- merge(co.means,allrain,by="Date",all=TRUE)
 source("R/FACE.moist.temp.co2.pdf.R") # pdf
 source("R/FACE.moist.temp.co2.png.R") # png
+
+########################
+# Plot sampling scheme #
+########################
+SSdd <- read.csv("Data/FACESamplingScheme.csv", header = TRUE)
+
+SSdd <- within(SSdd, {
+  date <- as.Date(dmy(date))
+  type <- factor("Sampling scheme")
+  variable <- factor(variable, 
+                     levels = c("Soil pH", "Enzyme", "Mineralisation", "Soil solution", "Soil", "IEM"))
+  })
+
+
+p <- ggplot(SSdd, aes(x = date, y = variable))
+p2 <- p + 
+  geom_point(size = 3, aes(shape = variable)) +
+  scale_x_date(breaks= date_breaks("3 month"), 
+               labels = date_format("%b-%y"),
+               limits = c(as.Date("2012-6-15"), as.Date("2014-3-29"))) +
+  science_theme +
+  theme(axis.text.x = element_blank(),
+        axis.ticks.x = element_blank(),
+        panel.grid.major =  element_line(colour = "grey70", size = 0.2),
+        panel.grid.major.x =  element_blank(),
+        legend.position = "none") +
+  geom_vline(xintercept = as.numeric(as.Date("2012-09-18")), linetype = "dashed") +
+  facet_grid(type~.) +
+  labs(x = NULL, y = NULL)
+p2
+
+p <- FgMstTmpRn(startDate = as.Date("2012-6-15"), endDate = as.Date("2014-3-29"), save = FALSE)
+
+p4 <- p + theme(plot.margin = unit(c(0.01, .6, .4, 2), "cm"), 
+                legend.background = element_rect(fill = "transparent", colour = NA))
+
+SSplot <- p2 + theme(plot.margin = unit(c(0.2, .7, 0, .28), "cm"))
+p3 <- arrangeGrob(SSplot, p4, 
+                  ncol = 1, nrow = 2, 
+                  heights = unit(c(1.5, 6), "inches"))
+p3
+ggsavePP(p3, filename = "output/Figs/FACE_manuscript/FACE_TempMoistRain_Sampling", 
+         width = 6.65, height = 7.5)
