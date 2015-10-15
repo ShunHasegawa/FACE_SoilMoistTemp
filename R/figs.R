@@ -51,7 +51,7 @@ SSdd <- within(SSdd, {
   date <- as.Date(dmy(date))
   type <- factor("Sampling scheme")
   variable <- factor(variable, 
-                     levels = c("Soil pH", "Enzyme", "Mineralisation", "Soil solution", "Soil", "IEM"))
+                     levels = c("Soil pH", "Enzymes", "Mineralisation", "Soil solution", "Soil", "IEM"))
   })
 
 
