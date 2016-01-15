@@ -1,3 +1,15 @@
+# theme
+science_theme <- theme(panel.border = element_rect(colour = "black"),
+                       panel.grid.major = element_blank(),
+                       panel.grid.minor = element_blank(),
+                       axis.text.x  = element_text(angle=45, vjust= 1, hjust = 1),
+                       axis.ticks.length = unit(-.2, "lines"),
+                       axis.ticks.margin = unit(.5, "lines"),
+                       legend.position = c(.11, .93), 
+                       legend.title = element_blank(),
+                       legend.key = element_blank(),
+                       legend.key.width = unit(1.8, "lines"))
+
 FgMstTmpRn <- function(startDate = NULL, endDate = NULL, savefile = TRUE){
   #######################
   ### Plot all dates ####
@@ -59,18 +71,6 @@ FgMstTmpRn <- function(startDate = NULL, endDate = NULL, savefile = TRUE){
   ########################
   # Plot for publication #
   ########################
-  # theme
-  science_theme <- theme(panel.border = element_rect(colour = "black"),
-                         panel.grid.major = element_blank(),
-                         panel.grid.minor = element_blank(),
-                         axis.text.x  = element_text(angle=45, vjust= 1, hjust = 1),
-                         axis.ticks.length = unit(-.2, "lines"),
-                         axis.ticks.margin = unit(.5, "lines"),
-                         legend.position = c(.11, .93), 
-                         legend.title = element_blank(),
-                         legend.key = element_blank(),
-                         legend.key.width = unit(1.8, "lines"))
-  
   p3 <- p + 
     geom_line(aes(x = Date, y = Mean, linetype = co2, col = co2), 
               data = co2Temp, alpha = .6, size = .7) +
