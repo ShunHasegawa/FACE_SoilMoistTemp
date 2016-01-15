@@ -2,8 +2,9 @@
 # setToken(tokenfile = "Data//token.txt")
 
 # download, process and combine
-rains <- downloadTOA5("FACELawn_FACE_Rain", cachefile = "Data/hievdata/FACE_Rain_tmp.RData", 
-                      topath = "Data/hievdata/row_data")
+rains <- downloadTOA5("FACELawn_FACE_Rain", 
+                      cachefile = "Data/hievdata/FACE_Rain_tmp.RData", 
+                      topath = "Data/hievdata/raw_data")
 
 # remove duplicates
 rains <- rains[!duplicated(rains),]

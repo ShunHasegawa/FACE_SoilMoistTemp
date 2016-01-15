@@ -1,6 +1,6 @@
-##############################################
-# Install/update HIE if you haven't done yet #
-##############################################
+###############################################
+# Install/update HIEV if you haven't done yet #
+###############################################
 # source("R/hivs.R")
 
 #######################################
@@ -10,8 +10,8 @@ setToken(tokenfile = "Data/token.txt")
 
 # download files from HIEv
 # use chachefile function in downloadTOA5
-allsoils <- downloadTOA5("SoilVars",cachefile="Data/hievdata/tmp.RData",
-                      topath="Data/hievdata/row_data", maxnfiles = 999)
+allsoils <- downloadTOA5("FACE.*SoilVars",cachefile="Data/hievdata/tmp.RData",
+                      topath="Data/hievdata/raw_data", maxnfiles = 999)
 # previous files are stored in hievdata/tmp.RData
 
 # remove duplicates and add ring and co2 columns
@@ -58,8 +58,8 @@ Notprbs <- c("DateTime", "RECORD", "Date", "Source", "ring", "co2", "TrghFlow_mm
 soilMlt <- melt(allsoil, id = Notprbs)
 
 # use dplyr as it's a lot faster than plyr
-soilRngSmry <- soilMlt %.% 
-  group_by(Date, ring, co2, variable) %.%
+soilRngSmry <- soilMlt %>% 
+  group_by(Date, ring, co2, variable) %>%
   summarise(Mean = mean(value, na.rm = TRUE),
             Min = min(value, na.rm = TRUE),
             Max = max(value, na.rm = TRUE))
@@ -69,4 +69,3 @@ soilRngSmry <- soilRngSmry[complete.cases(soilRngSmry), ]
 
 # save
 save(soilRngSmry, file = "output/Data/FACE_SoilAllProb.RData")
-
