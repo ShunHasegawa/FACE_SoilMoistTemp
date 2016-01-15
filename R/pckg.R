@@ -1,3 +1,6 @@
+library(checkpoint)
+checkpoint("2015-09-30")
+
 library(reshape2)
 library(plyr)
 library(dplyr)
@@ -8,5 +11,7 @@ library(lubridate)
 library(scales)
 library(proto)
 library(grid)
-library(HIEv)
 library(gridExtra)
+
+.libPaths("/Library/Frameworks/R.framework/Versions/3.2/Resources/library")
+library(HIEv)

@@ -19,8 +19,11 @@ text1 <- textGrob(string1, just = c("left", "centre"),
 
 p2 <- arrangeGrob(p, text1, ncol = 1, nrow = 2, 
                   heights = unit(c(7, .5), "inches"))
-ggsavePP(filename = "output//Figs/FACE_manuscript/FACE_TempMoistRain_caption", 
-         plot = p2, width = 6.65, height = 7.7)
+
+pdf(file = "output//Figs/FACE_manuscript/FACE_TempMoistRain_caption.pdf",
+    width = 6.65, height = 7.7)
+grid.draw(p2)
+dev.off()
 
 ##########
 ## Base ##
@@ -81,6 +84,8 @@ SSplot <- p2 + theme(plot.margin = unit(c(0.2, .7, 0, .28), "cm"))
 p3 <- arrangeGrob(SSplot, p4, 
                   ncol = 1, nrow = 2, 
                   heights = unit(c(1.5, 6), "inches"))
-p3
-ggsavePP(p3, filename = "output/Figs/FACE_manuscript/FACE_TempMoistRain_Sampling", 
-         width = 6.65, height = 7.5)
+
+pdf(file = "output/Figs/FACE_manuscript/FACE_TempMoistRain_Sampling.pdf",
+    width = 6.65, height = 7.5)
+grid.draw(p3)
+dev.off()
